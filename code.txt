@@ -1,0 +1,367 @@
+items = ['III', 'IV', 'V', 'VI', 'VII', 'VIII']
+scores = [0, 10, 20, 30, 40, 50, 60]
+initial_scores = [34.01, 35.53, 35.70, 43.53, 45.67, 26.48]  
+post_scores = [52.90, 45.63, 48.56, 50.15, 54.31, 33.25] 
+
+#
+items = ['Memory','Visual Processing','Focus and Attention','Problem Solving','Linguistics']
+initial_scores = [29.80, 48.22, 46.45, 38.12, 20.19]  
+post_scores = ['44.33, (49%)', '57.19, (19%)', '61.28, (32%)', '49.08,(29%)', '26.57, (32%)']  
+
+#
+table.cell(0, 0).text = 'CAUP'
+table.cell(0, 1).text = 'COGNITIVE ABILITIES UPSKILLING PROGRAM'
+table.cell(1, 0).text = 'IA & PPA'
+table.cell(1, 1).text = 'Initial Assessment & Post Program Assessment'
+table.cell(2, 0).text = 'BSPI'
+table.cell(2, 1).text = 'BRAIN SKILL POWER INDEX- An average measure of Cognitive Brain Skills across 5 core areas: Memory, Visual Processing, Focus & Attention, Problem Solving, and Linguistics'
+
+#
+texts = [
+    ("Program name:", "SKILLANGELS – COGNITIVE ABILITIES UPSKILLING PROGRAM"),
+    ("Program Start Date:", "17/6/2023"),
+    ("Number of students enrolled", "329"),
+    ("Number of students who have completed the PPA", "329"),
+    ("Grades in which the program has been conducted", "III, IV, V, VI, VII, VIII"),
+    ("Reporting Period:", "March 2024")
+]
+
+para = doc.add_paragraph('We congratulate the students and teachers on this excellent performance.')
+run.bold = True
+run.font.size = Pt(14)
+run.font.color.rgb = RGBColor(0, 0, 255)
+
+
+
+background_color = rgb_to_normalized((255, 255, 255))  
+bar1_color = rgb_to_normalized((255, 192, 0))  
+bar2_color = rgb_to_normalized((146, 208, 80)) 
+items = ['<=20', '21-40', '41-60', '61-80', '>80']
+initial_scores = [149, 100, 50, 27, 3]
+post_scores = [90, 88, 72, 53, 26]   
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+from docx import Document
+from docx.shared import Inches
+import io
+def rgb_to_normalized(rgb):
+    return tuple([x / 255.0 for x in rgb])
+background_color = rgb_to_normalized((32, 56, 100))  
+bar1_color = rgb_to_normalized((154, 87, 205))  
+bar2_color = rgb_to_normalized((146, 208, 80)) 
+items = ['III', 'IV', 'V', 'VI', 'VII', 'VIII']
+initial_scores = [34.01, 35.53, 35.70, 43.53, 45.67, 26.48]  
+post_scores = [52.90, 45.63, 48.56, 50.15, 54.31, 33.25]   
+x = np.arange(len(items))  
+width = 0.25  
+fig, ax = plt.subplots(figsize=(9, 5))
+plt.gcf().set_facecolor(background_color)  
+ax.set_facecolor(background_color) 
+gap = 0.02
+bar1 = ax.bar(x - width/2 - gap, initial_scores, width, label='Initial Assessment', color=bar1_color)  
+bar2 = ax.bar(x + width/2 + gap, post_scores, width, label='Post Program Assessment', color=bar2_color) 
+ax.set_title('BSPI growth-Initial vs Post Program Assessment', color='white')  
+ax.set_xticks(x)
+ax.set_xticklabels(items, color='white') 
+ax.tick_params(axis='y', colors='white')  
+ax.tick_params(axis='x', colors='white')  
+ax.legend(facecolor='gray', edgecolor='white', loc='upper right', fontsize=10, framealpha=0.7)  
+for i, rect in enumerate(bar1):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width() / 2, height, str(initial_scores[i]), ha='center', va='bottom', color='white')
+for i, rect in enumerate(bar2):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width() / 2, height, str(post_scores[i]), ha='center', va='bottom', color='white')
+ax.grid(True, which='both', axis='y' , linestyle='-', color='black', linewidth=0.6, alpha=0.2)
+plt.tight_layout()
+img_stream = io.BytesIO()
+plt.savefig(img_stream, format='png')
+img_stream.seek(0) 
+doc = Document('page1_doc.docx')  
+doc.add_paragraph("Here is the graph comparing Initial vs Post Program Assessment:")
+table = doc.add_table(rows=1, cols=1)
+cell = table.cell(0, 0)
+cell.paragraphs[0].clear()  
+cell.paragraphs[0].add_run().add_picture(img_stream, width=Inches(6)) 
+cell.alignment = 1  
+doc.save('page1_doc.docx')
+img_stream.close()
+print("Graph successfully added and center-aligned in the Word document.")
+
+
+table.cell(1, 0).text = 'S.NO'
+table.cell(1, 1).text = 'Student Name'
+table.cell(1, 2).text = 'Grade'
+table.cell(1, 3).text = 'Section'
+table.cell(1, 4).text = 'PPA - BSPI'
+table.cell(2, 0).text = '1'
+table.cell(2, 1).text = 'SAHAANA'
+table.cell(2, 2).text = '7'
+table.cell(2, 3).text = 'A'
+table.cell(2, 4).text = '89.6'
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+from docx import Document
+from docx.shared import Inches
+import io
+def rgb_to_normalized(rgb):
+    return tuple([x / 255.0 for x in rgb])
+background_color = rgb_to_normalized((32, 56, 100))  
+bar1_color = rgb_to_normalized((154, 87, 205))  
+bar2_color = rgb_to_normalized((146, 208, 80)) 
+items = ['III', 'IV', 'V', 'VI', 'VII', 'VIII']
+initial_scores = [34.01, 35.53, 35.70, 43.53, 45.67, 26.48]  
+post_scores = [52.90, 45.63, 48.56, 50.15, 54.31, 33.25]   
+x = np.arange(len(items))  
+width = 0.25  
+fig, ax = plt.subplots(figsize=(9, 5))
+plt.gcf().set_facecolor(background_color)  
+ax.set_facecolor(background_color) 
+gap = 0.02
+bar1 = ax.bar(x - width/2 - gap, initial_scores, width, label='Initial Assessment', color=bar1_color)  
+bar2 = ax.bar(x + width/2 + gap, post_scores, width, label='Post Program Assessment', color=bar2_color) 
+ax.set_title('BSPI growth-Initial vs Post Program Assessment', color='white')  
+ax.set_xticks(x)
+ax.set_xticklabels(items, color='white') 
+ax.tick_params(axis='y', colors='white')  
+ax.tick_params(axis='x', colors='white')  
+ax.legend(facecolor='gray', edgecolor='white', loc='upper right', fontsize=10, framealpha=0.7)  
+for i, rect in enumerate(bar1):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width() / 2, height, str(initial_scores[i]), ha='center', va='bottom', color='white')
+for i, rect in enumerate(bar2):
+    height = rect.get_height()
+    ax.text(rect.get_x() + rect.get_width() / 2, height, str(post_scores[i]), ha='center', va='bottom', color='white')
+plt.tight_layout()
+img_stream = io.BytesIO()
+plt.savefig(img_stream, format='png')
+img_stream.seek(0) 
+doc = Document('page1_doc.docx')  
+doc.add_paragraph("Here is the graph comparing Initial vs Post Program Assessment:")
+table = doc.add_table(rows=1, cols=1)
+cell = table.cell(0, 0)
+cell.paragraphs[0].clear()  
+cell.paragraphs[0].add_run().add_picture(img_stream, width=Inches(6)) 
+cell.alignment = 1  
+doc.save('page1_doc.docx')
+img_stream.close()
+print("Graph successfully added and center-aligned in the Word document
+
+
+
+for row in table.rows:
+    for cell in row.cells:
+        cell_xml = cell._element
+        tc_pr = cell_xml.get_or_add_tcPr()
+        borders = OxmlElement('w:tcBorders')
+        for border_name in ['top', 'left', 'bottom', 'right']:
+            border = OxmlElement(f'w:{border_name}')
+            border.set(qn('w:val'), 'single')
+            border.set(qn('w:sz'), '4') 
+            border.set(qn('w:space'), '0')  
+            border.set(qn('w:color'), '000000')  
+            borders.append(border)
+        tc_pr.append(borders)
+
+
+
+items = ['Contextual Recall', 'Associative Recall', 'Working Memory',  'Spatial Awareness', 'Conservation', 'Creative Thinking-Visualisation','Creative Thinking-Synthesis','Sustaining attention', 'Selective attention', 'Divided attention', 'Inductive Reasoning', 'Deductive Reasoning', 'Classification', 'Distinguishing', 'Pattern Recognition/Sequencing', 'Inferring', 'Prediction and Conclusion','Critical Thinking-Visualisation', 'Language Processing', 'Assimilation', 'Accomodation']
+initial_scores = ['52.09','55.16','40.98','62.82','52.34','62.03','51.21','49.37','56.95','68.96','53.43','40.83','67.56','42.11','47.18','32.48','42.71','63.8','26.15','34.58','66.61']  
+x = np.arange(len(items))  
+
+
+
+
+from docx import Document
+from docx.shared import Pt, RGBColor
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+doc = Document('page1_doc.docx')
+table = doc.add_table(rows=7, cols=7)
+headers = ['S.No', 'Grade', 'Total students completed PPA ', 'Number of students who have taken below 8 sessions in CAUP ', 'Average score of PPA taken by students who have completed below 8 sessions in CAUP ', 'Number of students who have taken 8 and more sessions in CAUP ', 'Average score of PPA taken by students who have taken 8 and above session we in CAUP']
+rows_data = [
+    ['1', 'Grade III', '63', '0', '0', '63', '52.90'],
+    ['2', 'Grade IV', '58', '0', '0', '58', '45.63'],
+    ['3', 'Grade V', '69', '0', '0', '69', '48.56'],
+    ['4', 'Grade VI', '58', '0', '0', '58', '50.15'],
+    ['5', 'Grade VII', '36', '0', '0', '36', '54.31'],
+    ['6', 'Grade VIII', '45', '0', '0', '45', '33.25']
+]
+for col, header in enumerate(headers):
+    cell = table.cell(0, col)
+    cell.text = header
+    for paragraph in cell.paragraphs:
+        for run in paragraph.runs:
+            run.bold = True
+            run.font.size = Pt(14)  
+    cell_xml = cell._element
+    tc_pr = cell_xml.get_or_add_tcPr()
+    shading = OxmlElement('w:shd')  # Create shading element for background color
+    shading.set(qn('w:fill'), '92CDEC')  # Set background color (example: light green RGB)
+    tc_pr.append(shading)
+    cell_text = cell._element
+    tc_pr = cell_text.get_or_add_tcPr()
+    rotation = OxmlElement('w:textDirection')
+    rotation.set(qn('w:val'), 'btLr') 
+    tc_pr.append(rotation)
+for col, header in enumerate(headers):
+    cell = table.cell(0, col)
+    width = Inches(len(header) * 0.75)  
+    cell.width = width
+for col in range(len(headers)):
+    cell = table.cell(0, col)
+    cell_xml = cell._element
+    tc_pr = cell_xml.get_or_add_tcPr()
+    borders = OxmlElement('w:tcBorders')
+    for border_name in ['top', 'left', 'bottom', 'right']:
+        border = OxmlElement(f'w:{border_name}')
+        border.set(qn('w:val'), 'single')
+        border.set(qn('w:sz'), str(4))  # Adjust the factor as needed
+        border.set(qn('w:space'), '0')  # No space between borders
+        border.set(qn('w:color'), '000000')  # Black border color
+        borders.append(border)
+    tc_pr.append(borders)
+for i, row_data in enumerate(rows_data, start=1):
+    for j, text in enumerate(row_data):
+        cell = table.cell(i, j)
+        cell.text = text
+        if j in [4, 6]:  
+            for paragraph in cell.paragraphs:
+                for run in paragraph.runs:
+                    run.bold = True
+                    run.font.size = Pt(12) 
+for row in table.rows:
+    for cell in row.cells:
+        cell_xml = cell._element
+        tc_pr = cell_xml.get_or_add_tcPr()
+        borders = OxmlElement('w:tcBorders')
+        for border_name in ['top', 'left', 'bottom', 'right']:
+            border = OxmlElement(f'w:{border_name}')
+            border.set(qn('w:val'), 'single')
+            border.set(qn('w:sz'), '4') 
+            border.set(qn('w:space'), '0')  
+            border.set(qn('w:color'), '000000')  
+            borders.append(border)
+        tc_pr.append(borders)
+doc.save('page1_doc.docx')
+print("Table created with vertical text and borders!")
+
+
+
+cell_width = Inches(len(header) * 0.5)  # Adjust this factor for optimal width
+    cell_width += Inches(1) 
+
+
+
+HEADER:
+from docx import Document
+from docx.shared import Inches
+from docx.enum.text import WD_PARAGRAPH_ALIGNMENT
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+doc = Document('page1_doc.docx')
+section = doc.sections[0]
+header = section.header
+paragraph = header.paragraphs[0]
+run = paragraph.add_run()
+image_path = "header.png"
+run.add_picture(image_path, width=Inches(6))  
+paragraph.alignment = WD_PARAGRAPH_ALIGNMENT.CENTER
+header_distance = section.header_distance
+section.header_distance = Inches(0.5)  
+doc.save("page1_doc.docx")
+
+
+from docx import Document
+from docx.shared import Inches
+from docx.shared import Cm
+doc = Document('page1_doc.docx')
+section = doc.sections[0]
+section.header_distance = Cm(0)  
+left_margin = section.left_margin
+right_margin = section.right_margin
+width = section.page_width - left_margin - right_margin
+header = section.header
+paragraph = header.paragraphs[0]
+run = paragraph.add_run()  
+run.add_picture('header.png', width=width)  
+doc.save('page1_doc.docx')
+print("Header image adjusted to stretch across the page!")
+
+from docx import Document
+from docx.shared import Inches
+from docx.shared import Cm
+doc = Document('page1_doc.docx')
+section = doc.sections[0]
+section.left_margin = Cm(1)  
+section.right_margin = Cm(1)  
+section.header_distance = Cm(0)  
+left_margin = section.left_margin
+right_margin = section.right_margin
+width = section.page_width - left_margin - right_margin
+header = section.header
+paragraph = header.paragraphs[0]
+run = paragraph.add_run()  
+run.add_picture('header.png', width=width) 
+doc.save('page1_doc.docx')
+print("Header image !")
+
+
+
+
+bspiscorerange_IA = data[{'bspiscorerange_IA'['>80']},{'bspiscorerange_IA'['>60<=80']},{'bspiscorerange_IA'['>40<=60']},{'bspiscorerange_IA'['>20<=40']},{'bspiscorerange_IA'['<=20']}]
+bspiscorerange_PPA = data[{'bspiscorerange_PPA'['>80']},{'bspiscorerange_PPA'['>60<=80']},{'bspiscorerange_PPA'['>40<=60']},{'bspiscorerange_PPA'['>20<=40']},{'bspiscorerange'['<=20']}]
+
+
+
+from docx import Document
+from docx.shared import Pt  
+doc = Document('page1_doc.docx')  
+table = doc.add_table(rows=21, cols=3)
+hdr_cells = table.rows[0].cells
+hdr_cells[0].text = 'Sl No'
+hdr_cells[1].text = ' Details'
+hdr_cells[2].text = 'Page No'
+for cell in hdr_cells:
+    paragraph = cell.paragraphs[0]
+    run = paragraph.runs[0]
+    run.bold = True
+    run.font.size = Pt(12)
+for row in range(1, 21): 
+    row_cells = table.rows[row].cells
+    row_cells[0].text = f'{row}'
+    row_cells[1].text = f'{row}'
+    row_cells[2].text = f'{row}' 
+for row in table.rows:
+    row.cells[0].width = Pt(70)  
+    row.cells[1].width = Pt(380)  
+    row.cells[2].width = Pt(70)  
+for cell in row_cells:
+    run.font.size = Pt(12)
+doc.save('page1_doc.docx')  
+print(" Word document successfully!")
+from docx.oxml.ns import qn
+from docx.oxml import OxmlElement
+def set_borders(table):
+    for row in table.rows:
+        for cell in row.cells:
+            cell_xml = cell._element
+            tc_pr = cell_xml.find(qn('w:tcPr'))
+            if tc_pr is None:
+                tc_pr = OxmlElement('w:tcPr')
+                cell_xml.append(tc_pr)
+            borders = OxmlElement('w:tcBorders')
+            for side in ['top', 'left', 'bottom', 'right']:
+                border = OxmlElement(f'w:{side}')
+                border.set(qn('w:val'), 'single')  
+                border.set(qn('w:space'), '0')
+                border.set(qn('w:sz'), '4')  
+                borders.append(border)
+            tc_pr.append(borders)
+set_borders(table)
+doc.save('page1_doc.docx')
+print("Borders added successfully!")
